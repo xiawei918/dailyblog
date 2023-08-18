@@ -20,7 +20,7 @@ export default function AuthorHome() {
             <div className={styles.content}>
                 {error && <p>{error}</p>}
                 {documents && <PostList posts={documents}/>}
-                {user && <Link to="/createpost"><button className='btn'>Write a post</button></Link>}
+                {user?.uid == uid && <Link to="/createpost"><button className='btn'>Write a post</button></Link>}
             </div>
         </div>
     )
