@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import ResetPasswordViaEmail from './pages/login/ResetPasswordViaEmail';
 import CreatePost from './pages/createpost/createpost';
 import AuthorHome from './pages/authorhome/Authorhome';
+import Post from './pages/post/Post';
 
 
 function App() {
@@ -61,6 +62,11 @@ function App() {
                 path="/author/:uid" 
                 element={
                   <AuthorHome/>
+                }/>
+              <Route 
+                path="/posts/:id" 
+                element={
+                  <Post/>
                 }/>
           </Routes>
         </BrowserRouter>

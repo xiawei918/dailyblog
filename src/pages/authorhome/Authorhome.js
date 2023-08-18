@@ -10,8 +10,8 @@ export default function AuthorHome() {
     const { user } = useAuthContext();
     const { uid } = useParams();
     const { documents, error } = useCollection(
-        uid,
-        [],
+        'posts',
+        ["uid", "==", uid],
         ["createdAt", 'desc'],
         );
 

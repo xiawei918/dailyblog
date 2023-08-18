@@ -1,0 +1,16 @@
+.post {
+    display: block;
+    max-width: 960px;
+    text-align: center;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.post-content {
+    text-align: left;
+    margin-top: 40px;
+    padding-inline: 15%;
+    font-size: 1.1em;
+}

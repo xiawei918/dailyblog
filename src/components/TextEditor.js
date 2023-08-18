@@ -13,7 +13,7 @@ import styles from './TextEditor.module.css';
 export function TextEditor() {
     const [post, setPost] = useState('');
     const [title, setTitle] = useState('');
-    const { addDocument, response } = useFirestore(projectAuth.currentUser.uid);
+    const { addDocument, response } = useFirestore('posts');
     const quillRef = useRef();
 
     const imageHandler = () => {

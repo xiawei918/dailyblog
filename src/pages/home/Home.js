@@ -8,8 +8,8 @@ import styles from './Home.module.css';
 export default function Home() {
     const { user } = useAuthContext();
     const { documents, error } = useCollection(
-        user.uid, 
-        [],
+        'posts', 
+        ["uid", "==", user.uid],
         ["createdAt", 'desc']
         );
 
