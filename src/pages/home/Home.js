@@ -16,7 +16,7 @@ export default function Home() {
         return (
         <div className={styles.container}>
             <div className={styles.content}>
-                {/* <p>Hello, {user && user.displayName}</p> */}
+                <p><Link to={"/author/" + user.uid}>Link To Your Daily Blog</Link></p>
                 {error && <p>{error}</p>}
                 {documents && <PostList posts={documents}/>}
                 <Link to="/createpost"><button className='btn'>Write a post</button></Link>

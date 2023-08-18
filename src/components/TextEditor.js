@@ -57,9 +57,10 @@ export function TextEditor() {
     const handlePostSubmit = () => {
         console.log('submitted')
         addDocument(
-            { uid: projectAuth.currentUser.displayName,
+            { uid: projectAuth.currentUser.uid,
               title,
-              post }
+              post,
+              author: projectAuth.currentUser.displayName }
         );
     }
 
@@ -79,18 +80,23 @@ export function TextEditor() {
                         <span>Title:</span>
                         <input 
                             type="title"
+                            required
                             onChange={(e) => setTitle(e.target.value)}
                             value={title}
                         />
                     </label>
-                    <ReactQuill 
-                        ref={quillRef}
-                        theme="snow" 
-                        value={post} 
-                        onChange={setPost} 
-                        modules={modules}
-                    />
-                    <button className='btn' onClick={handlePostSubmit}>Post</button>
+                    <div className={styles.quill}>
+                        <ReactQuill 
+                            ref={quillRef}
+                            theme="snow" 
+                            value={post} 
+                            onChange={setPost} 
+                            modules={modules}
+                        />
+                    </div>
+                    <div className={styles['submit-button']}>
+                        <button className='btn' onClick={handlePostSubmit}>Post</button>
+                    </div>
                 </div>
             </div>
 }

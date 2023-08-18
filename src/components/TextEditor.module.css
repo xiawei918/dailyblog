@@ -45,3 +45,10 @@
     width: 80%;
     margin-bottom: 15px;
 }
+.quill {
+    margin-top: 10px;
+}
+.submit-button {
+    margin-top: 10px;
+    text-align: right;
+}

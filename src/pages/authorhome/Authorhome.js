@@ -10,7 +10,7 @@ export default function AuthorHome() {
     const { user } = useAuthContext();
     const { uid } = useParams();
     const { documents, error } = useCollection(
-        uid, 
+        uid,
         [],
         ["createdAt", 'desc'],
         );
@@ -20,7 +20,7 @@ export default function AuthorHome() {
             <div className={styles.content}>
                 {error && <p>{error}</p>}
                 {documents && <PostList posts={documents}/>}
-                {user && <Link to="/createpost"><button>Write a post</button></Link>}
+                {user && <Link to="/createpost"><button className='btn'>Write a post</button></Link>}
             </div>
         </div>
     )
