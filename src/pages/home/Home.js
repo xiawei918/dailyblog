@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../hooks/useAuthContext';
 import styles from './Home.module.css';
-import { TextEditor } from '../../components/TextEditor';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
     const { user } = useAuthContext();
@@ -9,6 +9,7 @@ export default function Home() {
         <div className={styles.container}>
             <div className={styles.content}>
                 <p>Hello, {user && user.displayName}</p>
+                <Link to="/createpost"><button>Write a post</button></Link>
             </div>
         </div>
     )

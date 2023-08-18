@@ -6,11 +6,12 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Navbar from './components/Navbar';
 import ResetPasswordViaEmail from './pages/login/ResetPasswordViaEmail';
+import CreatePost from './pages/createpost/createpost';
 
 
 function App() {
   const { authIsReady, user } = useAuthContext();
-  
+
   return (
     <div className="App">
       {authIsReady && (
@@ -45,6 +46,14 @@ function App() {
                 <>
                   {user && <Navigate to="/"/>}
                   {!user && <ResetPasswordViaEmail/>}
+                </>
+              }/>
+              <Route 
+              path="/createpost" 
+              element={
+                <>
+                  {!user && <Navigate to="/"/>}
+                  {user && <CreatePost/>}
                 </>
               }/>
           </Routes>
