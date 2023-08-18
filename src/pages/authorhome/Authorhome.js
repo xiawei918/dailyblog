@@ -1,25 +1,26 @@
-import { useAuthContext } from '../../hooks/useAuthContext';
+import { useParams } from 'react-router-dom';
 import PostList from '../../components/PostList';
 import { useCollection } from '../../hooks/useCollection';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
-import styles from './Home.module.css';
+import styles from './Authorhome.module.css';
 
-export default function Home() {
+export default function AuthorHome() {
     const { user } = useAuthContext();
+    const { uid } = useParams();
     const { documents, error } = useCollection(
-        user.uid, 
+        uid, 
         [],
-        ["createdAt", 'desc']
+        ["createdAt", 'desc'],
         );
 
-        return (
+    return (
         <div className={styles.container}>
             <div className={styles.content}>
-                {/* <p>Hello, {user && user.displayName}</p> */}
                 {error && <p>{error}</p>}
                 {documents && <PostList posts={documents}/>}
-                <Link to="/createpost"><button className='btn'>Write a post</button></Link>
+                {user && <Link to="/createpost"><button>Write a post</button></Link>}
             </div>
         </div>
     )

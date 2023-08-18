@@ -69,23 +69,28 @@ export function TextEditor() {
         }
     }, [response.success])
 
-    return <div className={styles.editor}>
-            {Parser(post)}
-            <label>
-                <span>Title:</span>
-                <input 
-                    type="title"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                />
-            </label>
-            <ReactQuill 
-                ref={quillRef}
-                theme="snow" 
-                value={post} 
-                onChange={setPost} 
-                modules={modules}
-            />
-            <button className='btn' onClick={handlePostSubmit}>Post</button>
-        </div>
+    return <div className={styles.previeweditor}>
+                <div className={styles.preview}>
+                    <h2>{title}</h2>
+                    {Parser(post)}
+                </div>
+                <div className={styles.editor}>
+                    <label>
+                        <span>Title:</span>
+                        <input 
+                            type="title"
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                        />
+                    </label>
+                    <ReactQuill 
+                        ref={quillRef}
+                        theme="snow" 
+                        value={post} 
+                        onChange={setPost} 
+                        modules={modules}
+                    />
+                    <button className='btn' onClick={handlePostSubmit}>Post</button>
+                </div>
+            </div>
 }

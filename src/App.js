@@ -7,6 +7,7 @@ import Signup from './pages/signup/Signup';
 import Navbar from './components/Navbar';
 import ResetPasswordViaEmail from './pages/login/ResetPasswordViaEmail';
 import CreatePost from './pages/createpost/createpost';
+import AuthorHome from './pages/authorhome/Authorhome';
 
 
 function App() {
@@ -56,6 +57,11 @@ function App() {
                   {user && <CreatePost/>}
                 </>
               }/>
+              <Route 
+                path="/author/:uid" 
+                element={
+                  <AuthorHome/>
+                }/>
           </Routes>
         </BrowserRouter>
       )}
