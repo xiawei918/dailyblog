@@ -1,23 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import { useAuthContext } from './hooks/useAuthContext';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
+import Navbar from './components/Navbar';
+import ResetPasswordViaEmail from './pages/login/ResetPasswordViaEmail';
+
 
 function App() {
+  const { authIsReady, user } = useAuthContext();
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {authIsReady && (
+        <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <>
+                {!user && <Navigate to="/login"/>}
+                {user && <Home/>}
+                </>}/>
+            <Route 
+              path="/login" 
+              element={
+              <>
+                {user && <Navigate to="/"/>}
+                {!user && <Login/>}
+              </>}/>
+            <Route 
+              path="/signup" 
+              element={
+                <>
+                  {user && <Navigate to="/"/>}
+                  {!user && <Signup/>}
+                </>
+              }/>
+              <Route 
+              path="/resetpasswordviaemail" 
+              element={
+                <>
+                  {user && <Navigate to="/"/>}
+                  {!user && <ResetPasswordViaEmail/>}
+                </>
+              }/>
+          </Routes>
+        </BrowserRouter>
+      )}
     </div>
   );
 }
