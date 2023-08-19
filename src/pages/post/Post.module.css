@@ -2,6 +2,8 @@
     display: block;
     max-width: 960px;
     text-align: center;
+    margin: 10px auto;
+    padding-bottom: 300px;
 }
 
 .title {
