@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import { projectAuth, storage } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import Parser from 'html-react-parser';
+import { useNavigate } from 'react-router-dom'
 import { useFirestore } from '../hooks/useFirestore';
 import 'react-quill/dist/quill.snow.css';
 
@@ -15,6 +16,7 @@ export function TextEditor() {
     const [title, setTitle] = useState('');
     const { addDocument, response } = useFirestore('posts');
     const quillRef = useRef();
+    const navigate = useNavigate();
 
     const imageHandler = () => {
         const editor = quillRef.current.getEditor();
@@ -54,14 +56,17 @@ export function TextEditor() {
         }
     }), []);
 
-    const handlePostSubmit = () => {
+    const handlePostSubmit = async() => {
         console.log('submitted')
-        addDocument(
+        await addDocument(
             { uid: projectAuth.currentUser.uid,
               title,
               post,
               author: projectAuth.currentUser.displayName }
         );
+        if (!response.error) {
+            navigate('/')
+        }
     }
 
     useEffect(() => {
