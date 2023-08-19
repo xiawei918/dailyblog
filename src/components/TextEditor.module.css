@@ -9,6 +9,17 @@
     text-align: center;
 }
 
+@media all and (max-width:550px) {
+    .previeweditor {
+        max-width: 100%;
+        padding: 10px 10px;
+        box-sizing: border-box;
+        height: 90%;
+        /* border-style: solid; */
+        display: block;
+        text-align: center;
+    }
+}
 .preview {
     margin: 20px auto;
     padding: 40px;
