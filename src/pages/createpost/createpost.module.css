@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    max-width: 90%;
+    max-width: 960px;
     margin: 60px auto;
     text-align: center;
 }
