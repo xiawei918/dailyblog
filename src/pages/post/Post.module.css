@@ -3,7 +3,8 @@
     max-width: 960px;
     text-align: center;
     margin: 10px auto;
-    padding-bottom: 300px;
+    padding-bottom: 200px;
+    border-style: solid;
 }
 
 .title {
@@ -19,4 +20,10 @@
 
 .post-content img {
     max-width: 100%;
+    height: auto;
+}
+
+.videos, iframe, .videos iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
