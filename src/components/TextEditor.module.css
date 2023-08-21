@@ -3,7 +3,7 @@
     padding: 10px 10px;
     box-sizing: border-box;
     height: 90%;
-    /* border-style: solid; */
+    gap: 3%;
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -15,7 +15,6 @@
         padding: 10px 10px;
         box-sizing: border-box;
         height: 90%;
-        /* border-style: solid; */
         display: block;
         text-align: center;
     }
@@ -26,27 +25,44 @@
     padding: 40px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.2s;
-    /* border-style: solid; */
     min-width: 30%;
     max-width: 50%;
-    margin-right: 2%;
     text-align: left;
     overflow-y: scroll;
     overflow-wrap: break-word;
 }
+@media all and (max-width:550px) {
+    .preview {
+        max-width: 100%;
+        padding: 20px 10%;
+        box-sizing: border-box;
+        height: 45%;
+        display: block;
+    }
+}
 .preview h2 {
     text-align: center;
     margin-top: 0px;
+    margin-bottom: 5px;
 }
 
 .editor {
     min-width: 40%;
     max-width: 50%;
-    padding: 20px 15px;
+    padding: 20px 5px;
     box-sizing: border-box;
     height: 100%;
     /* border-style: solid; */
-    margin-bottom: 40px;
+    margin: 20px auto;
+}
+@media all and (max-width:550px) {
+    .editor {
+        max-width: 100%;
+        padding: 10px 10px;
+        height: 90%;
+        display: block;
+        text-align: center;
+    }
 }
 
 .editor label {
