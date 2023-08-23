@@ -71,7 +71,8 @@ export function TextEditor() {
 
     useEffect(() => {
         if (response.success) {
-            setPost('')
+            setPost('');
+            setTitle('');
         }
     }, [response.success])
 
