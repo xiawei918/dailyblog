@@ -16,7 +16,7 @@ export const useLogin = () => {
 
         // sign the user in
         try {
-            const response = await signInWithEmailAndPassword(projectAuth, email, password);
+            await signInWithEmailAndPassword(projectAuth, email, password);
 
             // dispatch logout action
             dispatch({ type: 'LOGIN', payload: projectAuth.currentUser});

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { projectAuth, projectFirestore } from "../firebase/config";
+import { projectAuth } from "../firebase/config";
 import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { useAuthContext } from "./useAuthContext";
 
