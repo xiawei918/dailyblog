@@ -9,7 +9,7 @@ export default function PostList({ posts }) {
             {posts.map((post) => (
                 <li key={post.id}>
                     <p className={styles.title}><Link to={"/posts/" + post.id}>{post.title}</Link></p>
-                    <p className={styles.createdat}>{post.createdAt.toDate().toDateString()}</p>
+                    <p className={styles.createdat}>{post.createdAt.toDate().toLocaleDateString()}</p>
                 </li>
             ))}
         </ul>

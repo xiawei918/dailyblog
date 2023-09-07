@@ -2,6 +2,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import { projectAuth, storage } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { useUpdateDocument } from '../hooks/useUpdateDocument';
 import Parser from 'html-react-parser';
 import { useNavigate } from 'react-router-dom'
 import { useFirestore } from '../hooks/useFirestore';
@@ -11,10 +12,16 @@ import 'react-quill/dist/quill.snow.css';
 import styles from './TextEditor.module.css';
 
 
-export function TextEditor() {
+export function TextEditor({postID, postContent, titleContent, isEditing, setIsEditing}) {
+    const postIDRef = useRef(postID).current;
+    const postContentRef = useRef(postContent).current;
+    const titleContentRef = useRef(titleContent).current;
+
     const [post, setPost] = useState('');
     const [title, setTitle] = useState('');
     const { addDocument, response } = useFirestore('posts');
+    const { updateError, isPending, updateDocument } = useUpdateDocument();
+
     const quillRef = useRef();
     const navigate = useNavigate();
 
@@ -76,6 +83,26 @@ export function TextEditor() {
         }
     }, [response.success])
 
+    useEffect(() => {
+        if (postContent) {
+            setPost(postContentRef);
+        }
+        if (titleContent) {
+            setTitle(titleContentRef);
+        }
+    }, [postContentRef, titleContentRef])
+
+    const HandlePostUpdate = async() => {
+        await updateDocument('posts', postIDRef, 
+            { uid: projectAuth.currentUser.uid,
+              title,
+              post,
+              author: projectAuth.currentUser.displayName }
+        );
+        setIsEditing(false);
+        navigate(`/posts/${postIDRef}`);
+    }
+
     return <div className={styles.previeweditor}>
                 <div className={styles.preview}>
                     <h2>{title}</h2>
@@ -95,14 +122,17 @@ export function TextEditor() {
                         <ReactQuill 
                             ref={quillRef}
                             theme="snow" 
-                            value={post} 
-                            onChange={setPost} 
+                            value={post}
+                            onChange={setPost}
                             modules={modules}
                         />
                     </div>
                     <div className={styles['submit-button']}>
-                        <button className='btn' onClick={handlePostSubmit}>Post</button>
+                        {!isEditing && <button className='btn' onClick={handlePostSubmit}>Post</button>}
+                        {isEditing && !isPending && <button className='btn'  onClick={HandlePostUpdate}>Save</button>}
+                        {isEditing && isPending && <button className='btn' disabled >Saving</button>}
                     </div>
+                    {updateError && <p className='error'>{updateError}</p>}
                 </div>
             </div>
 }

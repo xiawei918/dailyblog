@@ -20,7 +20,6 @@ export const useLogin = () => {
 
             // dispatch logout action
             dispatch({ type: 'LOGIN', payload: projectAuth.currentUser});
-            console.log(isCancelled)
             // update state
             if (!isCancelled) {
                 setIsPending(false);
@@ -37,6 +36,7 @@ export const useLogin = () => {
     }
 
     useEffect(() => {
+        setIsCancelled(false);
         return () => setIsCancelled(true);
     }, []);
 

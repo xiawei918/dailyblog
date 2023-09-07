@@ -1,12 +1,13 @@
 .posts {
     /* text-align: center; */
-    max-width: 70%;
-    margin-left: 10%;
+    max-width: 80%;
+    /* margin-left: 10%; */
     /* min-height: 500px; */
-    /* margin-right: 20%; */
+    margin-inline: auto;
     /* border-style: solid; */
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
 }
+
 .posts li {
     display: flex;
     align-items: center;
@@ -37,3 +38,8 @@
     font-size: 1.2em;
     /* border-style: solid; */
 }
+@media all and (max-width:750px) {
+    .posts li {
+        display: block;
+    }
+  }
